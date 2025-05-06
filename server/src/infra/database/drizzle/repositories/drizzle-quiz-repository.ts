@@ -12,6 +12,7 @@ export class DrizzleQuizRepository implements QuizRepository {
       questionsIdentifiers: quiz.props.questionsIdentifiers,
       score: quiz.props.score,
       title: quiz.props.title,
+      created_at: quiz.props.created_at
     })
 
     return quiz

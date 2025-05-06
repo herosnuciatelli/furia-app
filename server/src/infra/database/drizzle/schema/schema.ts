@@ -5,6 +5,7 @@ import {
   pgEnum,
   pgTable,
   text,
+  timestamp,
   varchar,
 } from 'drizzle-orm/pg-core'
 
@@ -51,7 +52,7 @@ export const quizzes = pgTable('quizzes', {
     .notNull()
     .references(() => users.id),
   score: integer().default(0).notNull(),
-  created_at: date('created_at').notNull().defaultNow(),
+  created_at: timestamp('created_at').notNull().defaultNow(),
   title: varchar('title', { length: 50 }).notNull(),
   questionsIdentifiers: varchar('questionsIdentifiers').array().notNull(),
 })
@@ -72,5 +73,5 @@ export const trades = pgTable('trades', {
   fanId: varchar('fan_id')
     .notNull()
     .references(() => users.id),
-  transaction_date: date('created_at').notNull().defaultNow(),
+  transaction_date: timestamp('transaction_date').notNull().defaultNow()
 })

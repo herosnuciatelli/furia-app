@@ -2,7 +2,6 @@ import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { ViewProfile } from '../../../application/usecases/view-profile'
 import { DrizzleFanRepository } from '../../database/drizzle/repositories/drizzle-fan-repository'
-import { answerUserMessage } from '../functions/answer-user'
 
 export const viewProfileRoute: FastifyPluginAsyncZod = async app => {
   app.get(

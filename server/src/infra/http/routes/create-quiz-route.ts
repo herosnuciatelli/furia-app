@@ -12,7 +12,7 @@ export const createQuizRoute: FastifyPluginAsyncZod = async app => {
       schema: {
         summary: 'Create a quiz',
         operationId: 'createQuiz',
-        tags: ['quiz'],
+        tags: ['quiz', 'chatbot'],
         params: z.object({
           fanId: z.string(),
         }),

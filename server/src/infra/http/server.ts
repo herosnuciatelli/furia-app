@@ -17,6 +17,8 @@ import { takeQuizRoute } from './routes/take-quiz-route'
 import { viewGlobalRankingRoute } from './routes/view-global-ranking-route'
 import { viewProfileRoute } from './routes/view-profile-route'
 import { viewTradeHistoryRoute } from './routes/view-trade-history-route'
+import { viewQuizHistoryRoute } from "./routes/view-quiz-history-route"
+import { sendPromptRoute } from "./routes/send-prompt-route"
 
 const app = fastify()
 
@@ -47,6 +49,8 @@ app.register(viewTradeHistoryRoute)
 app.register(viewGlobalRankingRoute)
 app.register(createQuizRoute)
 app.register(takeQuizRoute)
+app.register(viewQuizHistoryRoute)
+app.register(sendPromptRoute)
 
 app.listen({ port: env.PORT }).then(() => {
   console.log('HTTP server running!')

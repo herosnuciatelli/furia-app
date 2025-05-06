@@ -23,7 +23,14 @@ export const takeQuizRoute: FastifyPluginAsyncZod = async app => {
             .array(),
         }),
         response: {
-          202: z.object({}),
+          202: z.object({
+            message: z.string(),
+            data: z.object({
+              chosenOption: z.enum(['a', 'b', 'c', 'd']),
+              questionId: z.string(),
+            }).array(),
+            success: z.boolean()
+          }),
         },
       },
     },
