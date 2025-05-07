@@ -19,6 +19,7 @@ describe('Create fan use case', () => {
     const response = await systemUnderTest.execute({
       email,
       username,
+      userId: ""
     })
 
     expect(response.data[0]).toBeInstanceOf(Fan)
@@ -36,6 +37,7 @@ describe('Create fan use case', () => {
       const response = systemUnderTest.execute({
         email,
         username,
+        userId: ""
       })
       return response
     }).toThrow()
@@ -53,6 +55,7 @@ describe('Create fan use case', () => {
       const response = systemUnderTest.execute({
         email,
         username,
+        userId: ""
       })
       return response
     }).toThrow()
@@ -70,6 +73,7 @@ describe('Create fan use case', () => {
       const response = systemUnderTest.execute({
         email,
         username,
+        userId: ""
       })
       return response
     }).toThrow()
@@ -87,6 +91,7 @@ describe('Create fan use case', () => {
       const response = systemUnderTest.execute({
         email,
         username,
+        userId: ""
       })
       return response
     }).toThrow()
@@ -98,6 +103,7 @@ describe('Create fan use case', () => {
       const response = systemUnderTest.execute({
         email,
         username,
+        userId: ""
       })
       return response
     }).toThrow()
@@ -121,6 +127,7 @@ describe('Create fan use case', () => {
     const response = await systemUnderTest.execute({
       email: Email.use('heros7@gmail.com'),
       username: Username.use('heros_nuciatelli'),
+      userId: ""
     })
 
     expect(response.success).toEqual(false)

@@ -14,7 +14,7 @@ describe('View trade history use case', () => {
     const fan = generateFan()
     const rewards = generateRewards()
     const trades = generateTrades(fan, rewards)
-
+    
     for (const trade of trades) {
       tradeRepository.create(trade)
     }

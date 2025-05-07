@@ -12,6 +12,7 @@
   "description": "",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@types/node": "^22.15.14",
     "drizzle-kit": "^0.31.1",
     "globals": "^16.0.0",
     "vitest": "^3.1.2"
@@ -22,7 +23,6 @@
     "@fastify/swagger": "^9.5.0",
     "@fastify/swagger-ui": "^5.2.2",
     "@supabase/supabase-js": "^2.49.4",
-    "@types/node": "^22.15.3",
     "ai": "^4.3.13",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.43.1",
