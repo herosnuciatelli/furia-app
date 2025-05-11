@@ -1,5 +1,6 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
+import { GetFanByAuth } from '../../../application/usecases/get-fan-by-auth'
 import { PurchaseReward } from '../../../application/usecases/purchase-reward'
 import { Code } from '../../../domain/value-objects/Code'
 import { DrizzleFanRepository } from '../../database/drizzle/repositories/drizzle-fan-repository'
@@ -15,7 +16,7 @@ export const purchaseRewardRoute: FastifyPluginAsyncZod = async app => {
         operationId: 'createReward',
         tags: ['reward'],
         body: z.object({
-          fanId: z.string().ulid(),
+          fanAuthId: z.string(),
           rewardCode: z.string(),
         }),
         response: {
@@ -35,7 +36,7 @@ export const purchaseRewardRoute: FastifyPluginAsyncZod = async app => {
       },
     },
     async (request, reply) => {
-      const { fanId, rewardCode } = request.body
+      const { fanAuthId, rewardCode } = request.body
       const fanRepository = new DrizzleFanRepository()
       const rewardRepository = new DrizzleRewardRepository()
       const tradeRepository = new DrizzleTradeRepository()
@@ -47,10 +48,15 @@ export const purchaseRewardRoute: FastifyPluginAsyncZod = async app => {
       )
 
       const code = Code.use(rewardCode)
+      const getFanByAuth = new GetFanByAuth(fanRepository)
 
       try {
+        const fan = await getFanByAuth.execute({ userId: fanAuthId })
+
+        if (!fan.success) throw new Error('User not authenticated')
+
         const response = await purchaseReward.execute({
-          fanId,
+          fanId: fan.data[0].id,
           rewardCode: code,
         })
 

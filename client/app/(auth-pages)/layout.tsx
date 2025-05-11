@@ -1,9 +1,14 @@
+import { Navbar } from '@/components/navbar'
+
 export default async function Layout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <div className="max-w-7xl flex flex-col gap-12 items-start">{children}</div>
-  );
+    <div>
+      <Navbar />
+      <div className="flex gap-12 w-full">{children}</div>
+    </div>
+  )
 }

@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
+import { cn } from "@/lib/utils"
 
-export const MaxWidthWrapper = ({ children }: { children: ReactNode }) => (
-    <div className="max-w-3xl mx-auto">{ children }</div>
+export const MaxWidthWrapper = ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+    <div className={cn("max-w-6xl mx-auto", className)} {...props}>{ children }</div>
 )

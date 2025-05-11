@@ -10,7 +10,6 @@ export class DrizzleTradeRepository implements TradeRepository {
       fanId: trade.props.fanId,
       id: trade.id,
       rewardId: trade.props.rewardId,
-      transaction_date: trade.props.transaction_date.toISOString()
     })
 
     return trade

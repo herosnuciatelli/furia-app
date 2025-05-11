@@ -71,4 +71,12 @@ export class InMemoryFansRepository implements FanRepository {
 
     return this.items.slice(0, 10)
   }
+
+  async findByUserId(userId: string): Promise<Fan | null> {
+    const fan = this.items.find(fan => fan.props.userId === userId)
+
+    if (!fan) return null
+
+    return fan
+  }
 }

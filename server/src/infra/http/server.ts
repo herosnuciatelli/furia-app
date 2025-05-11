@@ -12,13 +12,14 @@ import { env } from '../../env'
 import { createFanRoute } from './routes/create-fan-route'
 import { createQuizRoute } from './routes/create-quiz-route'
 import { createRewardRoute } from './routes/create-reward-route'
+import { getFanAuthRoute } from './routes/get-fan-auth'
 import { purchaseRewardRoute } from './routes/purchase-reward-route'
+import { sendPromptRoute } from './routes/send-prompt-route'
 import { takeQuizRoute } from './routes/take-quiz-route'
 import { viewGlobalRankingRoute } from './routes/view-global-ranking-route'
 import { viewProfileRoute } from './routes/view-profile-route'
+import { viewQuizHistoryRoute } from './routes/view-quiz-history-route'
 import { viewTradeHistoryRoute } from './routes/view-trade-history-route'
-import { viewQuizHistoryRoute } from "./routes/view-quiz-history-route"
-import { sendPromptRoute } from "./routes/send-prompt-route"
 
 const app = fastify()
 
@@ -51,6 +52,7 @@ app.register(createQuizRoute)
 app.register(takeQuizRoute)
 app.register(viewQuizHistoryRoute)
 app.register(sendPromptRoute)
+app.register(getFanAuthRoute)
 
 app.listen({ port: env.PORT }).then(() => {
   console.log('HTTP server running!')

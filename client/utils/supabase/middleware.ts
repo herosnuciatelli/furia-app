@@ -45,9 +45,9 @@ export const updateSession = async (request: NextRequest) => {
       return NextResponse.redirect(new URL("/sign-in", request.url));
     }
 
-    if (["/sign-in", "/sign-up"].includes(request.nextUrl.pathname) && !user.error) {
-      return NextResponse.redirect(new URL("/", request.url));
-    }
+    // if (["/sign-in", "/sign-up"].includes(request.nextUrl.pathname) && !user.error) {
+    //   return NextResponse.redirect(new URL("/", request.url));
+    // }
 
     return response;
   } catch (e) {

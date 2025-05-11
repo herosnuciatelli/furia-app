@@ -7,6 +7,7 @@ export interface FanRepository {
   create(fan: Fan): Promise<Fan>
   findById(id: string): Promise<Fan | null>
   findByUsername(username: Username): Promise<Fan | null>
+  findByUserId(userId: string): Promise<Fan | null>
   updatePoints(fan: Fan, points: Points): Promise<Fan>
   updateFuryCoins(fan: Fan, furyCoins: FuryCoins): Promise<Fan>
   getGlobalRanking(): Promise<Fan[] | null>

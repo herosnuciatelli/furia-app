@@ -153,4 +153,25 @@ export class DrizzleFanRepository implements FanRepository {
       fanUpdated.id
     )
   }
+
+  async findByUserId(userId: string): Promise<Fan | null> {
+    const fan = await db.query.users.findFirst({
+      where: eq(users.userId, userId),
+    })
+
+    if (!fan) return null
+
+    if (fan.role !== 'FAN') return null
+
+    return Fan.create(
+      {
+        email: Email.use(fan.email),
+        furyCoins: FuryCoins.use(fan.furyCoins),
+        points: Points.use(fan.points),
+        userId: fan.userId,
+        username: Username.use(fan.username),
+      },
+      fan.id
+    )
+  }
 }
