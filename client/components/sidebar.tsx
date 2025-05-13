@@ -6,18 +6,26 @@ import {
 
 import { SIDEBAR_ITEMS } from '@/constants'
 import { cn } from '@/lib/utils'
-import { ArrowUpDownIcon, MessageCircleDashedIcon } from 'lucide-react'
+import { ArrowUpDownIcon } from 'lucide-react'
 import Link from 'next/link'
 import { SignOutButton } from './sign-out-button'
 import { buttonVariants } from './ui/button'
+import { getFanAuth } from '@/app/actions/get-fan-auth'
+import { createClient } from '@/utils/supabase/server'
+import { redirect } from 'next/navigation'
 
 export const Sidebar = async () => {
+  const { auth } = await createClient()
+  const { user } = (await auth.getUser()).data
+  if (!user) redirect("/sign-in")
+  const getFan = await getFanAuth(user.id)
+
   return (
     <aside className="px-3">
       <Popover>
         <PopoverTrigger className="flex gap-1.5 items-center w-full py-1.5 rounded-sm text-sm border px-5 md:px-12 border-dashed bg-neutral-800/50 opacity-90 hover:opacity-100">
           <ArrowUpDownIcon size={15} />
-          <span className="hidden md:block">username</span>
+          <span className="hidden md:block">{getFan.data[0].username}</span>
         </PopoverTrigger>
         <PopoverContent className="w-max">
           <SignOutButton />
@@ -31,7 +39,7 @@ export const Sidebar = async () => {
               <li
                 className={cn(
                   buttonVariants({ variant: 'secondary' }),
-                  'w-full'
+                  'w-full flex justify-start gap-5'
                 )}
               >
                 <item.icon />

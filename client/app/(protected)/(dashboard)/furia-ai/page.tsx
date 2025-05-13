@@ -113,7 +113,7 @@ export default function FuriaAI() {
 
         {talk.length === 0 && (
           <div className="text-center">
-            <h2 className="text-3xl bg-gradient-to-b from-neutral-50 via-neutral-200 to-neutral-800 bg-clip-text text-transparent">
+            <h2 className="text-4xl bg-gradient-to-b from-neutral-50 via-neutral-200 to-neutral-400 bg-clip-text text-transparent">
               E aí fã, me pergunte algo sobre a FURIA!
             </h2>
           </div>

@@ -1,3 +1,4 @@
+import { getFanAuth } from "@/app/actions/get-fan-auth";
 import { env } from "@/env";
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
@@ -45,9 +46,16 @@ export const updateSession = async (request: NextRequest) => {
       return NextResponse.redirect(new URL("/sign-in", request.url));
     }
 
-    // if (["/sign-in", "/sign-up"].includes(request.nextUrl.pathname) && !user.error) {
-    //   return NextResponse.redirect(new URL("/", request.url));
-    // }
+    if (["/sign-in", "/sign-up"].includes(request.nextUrl.pathname) && !user.error) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+    
+    const fan = await getFanAuth(user.data.user?.id ?? "")
+    
+    if (request.nextUrl.pathname.startsWith("/choose-username") && fan.success){
+      return NextResponse.redirect(new URL("/furia-ai", request.url));
+    }
+      
 
     return response;
   } catch (e) {

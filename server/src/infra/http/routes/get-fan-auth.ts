@@ -23,6 +23,7 @@ export const getFanAuthRoute: FastifyPluginAsyncZod = async app => {
                 username: z.string(),
                 points: z.number(),
                 id: z.string().ulid(),
+                furyCoins: z.number()
               })
               .array(),
           }),
@@ -50,6 +51,7 @@ export const getFanAuthRoute: FastifyPluginAsyncZod = async app => {
           username: string
           points: number
           id: string
+          furyCoins: number
         }[] = []
 
         const fan = fanByAuthId[0]
@@ -59,6 +61,7 @@ export const getFanAuthRoute: FastifyPluginAsyncZod = async app => {
             id: fan.id,
             points: fan.props.points.value,
             username: fan.props.username.value,
+            furyCoins: fan.props.furyCoins.value
           })
         }
 

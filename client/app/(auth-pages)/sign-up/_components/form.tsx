@@ -12,7 +12,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { createClient } from '@/utils/supabase/client'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { EyeIcon, EyeOffIcon, LoaderCircleIcon } from 'lucide-react'
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React from 'react'

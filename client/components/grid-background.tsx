@@ -14,7 +14,7 @@ export function GridBackground({ children }: { children: ReactNode }) {
         )}
       />
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] bg-background" />
-      <div className="relative z-20 bg-gradient-to-b from-neutral-200 to-neutral-800 bg-clip-text py-8 text-4xl font-bold text-transparent sm:text-7xl">
+      <div className="relative z-20 bg-gradient-to-b from-neutral-200 to-neutral-100 bg-clip-text py-8 text-4xl font-bold text-transparent sm:text-7xl">
         {children}
       </div>
     </div>

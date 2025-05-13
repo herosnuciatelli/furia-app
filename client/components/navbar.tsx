@@ -7,7 +7,7 @@ import { Button } from './ui/button'
 
 const Navbar = ({ children }: { children?: ReactNode }) => {
   return (
-    <header className="border-b border-zinc-800 py-3 px-2.5">
+    <header className="border-b border-zinc-800 bg-zinc-950 sticky z-10 py-3 px-2.5">
       <MaxWidthWrapper className="flex justify-between items-center">
         <Link href={'/'}>
           <div className="flex items-center gap-1.5">
