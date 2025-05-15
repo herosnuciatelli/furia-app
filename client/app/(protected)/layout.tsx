@@ -17,9 +17,5 @@ export default async function Layout({
     return redirect('/sign-in')
   }
 
-  const response = await getFanAuth(user.id)
-  
-  if (!response.success) redirect("/choose-username")
-
   return <>{children}</>
 }

@@ -67,13 +67,17 @@ export default function ChooseUsernamePage() {
 				).then((response) => response.json());
 
 				if (!response.success) {
-					 form.setError("username", { message: response.message }, { shouldFocus: true });
-           return
+					form.setError(
+						"username",
+						{ message: response.message },
+						{ shouldFocus: true },
+					);
+					return;
 				}
 
 				toast("Username associado com sucesso!");
 
-				setTimeout(redirect("/furia-app"));
+				setTimeout(redirect("/furia-app"), 300);
 			} catch (error) {
 				console.log(error);
 				toast("Erro ao adicionar o username");

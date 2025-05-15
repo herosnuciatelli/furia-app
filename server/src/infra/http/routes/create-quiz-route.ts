@@ -6,14 +6,14 @@ import { DrizzleQuestionRepository } from '../../database/drizzle/repositories/d
 import { DrizzleQuizRepository } from '../../database/drizzle/repositories/drizzle-quiz-repository'
 
 export const createQuizRoute: FastifyPluginAsyncZod = async app => {
-  app.get(
-    '/create-quiz/:fanId',
+  app.post(
+    '/create-quiz',
     {
       schema: {
         summary: 'Create a quiz',
         operationId: 'createQuiz',
         tags: ['quiz', 'chatbot'],
-        params: z.object({
+        body: z.object({
           fanId: z.string(),
         }),
         response: {
@@ -22,11 +22,6 @@ export const createQuizRoute: FastifyPluginAsyncZod = async app => {
             message: z.string(),
             data: z
               .object({
-                title: z.string(),
-                questionsIdentifiers: z.string().ulid().array(),
-                fanId: z.string().ulid(),
-                score: z.number(),
-                created_at: z.date(),
                 id: z.string().ulid(),
               })
               .array(),
@@ -39,7 +34,7 @@ export const createQuizRoute: FastifyPluginAsyncZod = async app => {
       const quizRepository = new DrizzleQuizRepository()
       const questionRepository = new DrizzleQuestionRepository()
 
-      const { fanId } = request.params
+      const { fanId } = request.body
 
       const createQuiz = new CreateQuiz(
         questionRepository,
@@ -53,22 +48,12 @@ export const createQuizRoute: FastifyPluginAsyncZod = async app => {
         const quiz = response.data[0]
 
         const data: {
-          title: string
-          questionsIdentifiers: string[]
-          fanId: string
-          score: number
-          created_at: Date
           id: string
         }[] = []
 
         if (response.data.length > 0) {
           data.push({
-            title: quiz.props.title,
-            created_at: quiz.props.created_at,
-            fanId: quiz.props.fanId,
-            id: quiz.id,
-            questionsIdentifiers: quiz.props.questionsIdentifiers,
-            score: quiz.props.score,
+            id: quiz.id
           })
         }
 
