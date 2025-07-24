@@ -14,6 +14,7 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 20
+        - run: cd server
         - run: npm run build
 
     test-application:
@@ -25,6 +26,7 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 20
+        - run: cd server
         - run: npm run test
 
     lint-application:
@@ -36,6 +38,7 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 20
+        - run: cd server
         - run: npm run lint
 #  build-and-push-docker-image:
 #    runs-on: ubuntu-latest
