@@ -54,6 +54,6 @@ app.register(viewQuizHistoryRoute)
 app.register(sendPromptRoute)
 app.register(getFanAuthRoute)
 
-app.listen({ port: env.PORT }).then(() => {
+app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server running!')
 })
