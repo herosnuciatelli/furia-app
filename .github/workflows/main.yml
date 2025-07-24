@@ -10,19 +10,21 @@ jobs:
       steps:
         - name: getting code
           uses: actions/checkout@v4
+
         - name: setup node and running build
           uses: actions/setup-node@v4
           with:
             node-version: 20
           run: |
             cd server
-            npmnpm run build
+            npm run build
 
     test-application:
       runs-on: ubuntu-latest
       steps:
         - name: getting code
           uses: actions/checkout@v4
+
         - name: setup node and running tests
           uses: actions/setup-node@v4
           with:
@@ -36,6 +38,7 @@ jobs:
       steps:
         - name: getting code
           uses: actions/checkout@v4
+          
         - name: setup node and running lint
           uses: actions/setup-node@v4
           with:
