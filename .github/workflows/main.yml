@@ -36,6 +36,7 @@ jobs:
 
     lint-application:
       runs-on: ubuntu-latest
+      needs: [build-application]
       steps:
         - uses: actions/checkout@v4
 
