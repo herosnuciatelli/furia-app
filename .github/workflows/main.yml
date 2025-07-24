@@ -38,16 +38,15 @@ jobs:
     lint-application:
       runs-on: ubuntu-latest
       steps:
-        - name: getting code
-          uses: actions/checkout@v4
+        - uses: actions/checkout@v4
 
-        - name: setup node and running lint
-          uses: actions/setup-node@v4
+        - uses: actions/setup-node@v4
           with:
             node-version: 20
-        - run: npm i
-        - run: npm run lint
-          working-directory: ./server
+        - run: |
+            cd server
+            npm install
+            npm run lint
 #  build-and-push-docker-image:
 #    runs-on: ubuntu-latest
 #    steps:
