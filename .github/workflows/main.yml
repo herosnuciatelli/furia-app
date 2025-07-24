@@ -16,8 +16,9 @@ jobs:
           with:
             node-version: 20
           run: |
-            cd server
+            npm install
             npm run build
+          working-directory: ./server
 
     test-application:
       runs-on: ubuntu-latest
@@ -30,22 +31,24 @@ jobs:
           with:
             node-version: 20
           run: |
-            cd server
+            npm install
             npm run test
+          working-directory: ./server
 
     lint-application:
       runs-on: ubuntu-latest
       steps:
         - name: getting code
           uses: actions/checkout@v4
-          
+
         - name: setup node and running lint
           uses: actions/setup-node@v4
           with:
             node-version: 20
           run: |
-            cd server
+            npm install
             npm run lint
+          working-directory: ./server
 #  build-and-push-docker-image:
 #    runs-on: ubuntu-latest
 #    steps:
