@@ -31,7 +31,7 @@ export class CreateFan {
       }
     }
 
-    const fan = Fan.create({
+    var fan = Fan.create({
       email,
       username,
       furyCoins: FuryCoins.use(0),
