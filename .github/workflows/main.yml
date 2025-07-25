@@ -48,8 +48,10 @@ jobs:
             cd server
             npm install
             npm run lint
+
     build-and-push-docker-image:
       runs-on: ubuntu-latest
+      needs: [test-application]
       steps:
         - name: Checkout repository
           uses: actions/checkout@v4
