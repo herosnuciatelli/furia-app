@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  furia-app-server:
+    container_name: furia-app-server
+    image: herosnuciatelli/furia-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./.env:/usr/app/.env
