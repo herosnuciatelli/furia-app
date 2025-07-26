@@ -2,6 +2,7 @@ import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 import { ViewGlobalRanking } from '../../../application/usecases/view-global-ranking'
 import { DrizzleFanRepository } from '../../database/drizzle/repositories/drizzle-fan-repository'
+import { KafkaMessagingAdapter } from '../../messaging/adapter/kafka-messaging-adapter'
 
 export const viewGlobalRankingRoute: FastifyPluginAsyncZod = async app => {
   app.get(
@@ -28,7 +29,7 @@ export const viewGlobalRankingRoute: FastifyPluginAsyncZod = async app => {
     },
     async (request, reply) => {
       const fanRepository = new DrizzleFanRepository()
-
+      const kafkaMessagingAdapter =  new KafkaMessagingAdapter()
       const viewGlobalRanking = new ViewGlobalRanking(fanRepository)
 
       try {
@@ -55,6 +56,8 @@ export const viewGlobalRankingRoute: FastifyPluginAsyncZod = async app => {
           message: response.message,
           success: response.success,
         })
+        kafkaMessagingAdapter.sendMessage("ranking.views", { viewers: data.map((user) => user.id) })
+        
       } catch (err) {
         console.error(err)
 
